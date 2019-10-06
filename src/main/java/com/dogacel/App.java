@@ -221,7 +221,7 @@ public class App {
      */
     public static int compareTurkishString(String s1, String s2) {
         int length = Math.min(s1.length(), s2.length());
-        for (int i = 0; i < lengthsfsd ; i++) {
+        for (int i = 0; i < length ; i++) {
             int comparison = compareTurkishChar(s1.charAt(i), s2.charAt(i));
             if (comparison == 1)
                 return 1;

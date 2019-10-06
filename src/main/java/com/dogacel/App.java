@@ -214,7 +214,7 @@ public class App {
     }
 
     /**
-     * Compares two turkish strings in lex. order
+     * Compares two turkish strings in lex order
      * @param s1 instr 1
      * @param s2 instr 2
      * @return 0 if 1 == 2, 1 if 1 > 2 , -1 if 1 < 2

@@ -16,7 +16,7 @@ public class App {
      */
     public static void loadWords() throws Exception {
         words = new String[20000000];
-        wordCount = 0sd;
+        wordCount = 0;
         FileReader inFile = new FileReader("wordlist.txt");
 
         BufferedReader br = new BufferedReader(inFile);

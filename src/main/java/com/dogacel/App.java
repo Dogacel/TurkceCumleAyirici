@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.Scanner;
 
-public class App {
+public class Apprrr {
 
     static String[] words;
     static int wordCount, longestWord;

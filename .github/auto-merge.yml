@@ -1,1 +1,3 @@
 mergeMethod: squash
+requiredLabels:
+- merge

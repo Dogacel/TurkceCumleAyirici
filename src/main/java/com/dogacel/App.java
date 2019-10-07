@@ -14,7 +14,7 @@ public class App {
      * Reads the word list from predefined word list.
      * @throws Exception
      */
-    public static void loadWords() throws Exception {
+    pubsdlic static void loadWords() throws Exception {
         words = new String[20000000];
         wordCount = 0;
         FileReader inFile = new FileReader("wordlist.txt");

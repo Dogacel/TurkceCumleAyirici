@@ -7,6 +7,15 @@ import java.util.Scanner;
 
 public class App {
 
+	public static class ResultPair {
+		public String str;
+		public boolean correct;
+		public ResultPair (String str, boolean correct) {
+			this.str = str;
+			this.correct = correct;
+		}
+	}
+	
     static String[] words;
     static int wordCount, longestWord;
 
@@ -17,7 +26,7 @@ public class App {
     public static void loadWords() throws Exception {
         words = new String[20000001];
         wordCount = 0;
-        FileReader inFile = new FileReader("wordlist.txt");
+        FileReader inFile = new FileReader("src/main/java/com/dogacel/wordlist.txt");
 
         BufferedReader br = new BufferedReader(inFile);
 
@@ -71,43 +80,36 @@ public class App {
         do {
             System.out.print("Input: ");
             inStr = scan.nextLine();
-            System.out.println("Output: " + hardRefactorString(inStr));
+            System.out.println("Greedy Output: " + hardRefactorString(inStr));
+            System.out.println("Recursive Output: " + recursiveRefactorString(inStr).str);
         } while (inStr.length() > 1);
 
     }
 
-    //TODO: Recursive approach for all words properly seperated by spaces.
-    /**
-    public static String recursiveRefactorString(String s) {
+    public static ResultPair recursiveRefactorString(String s) {
 
         if (s == null)
             return null;
 
         if (s.equals("") || s.equals(".") || s.equals("!") || s.equals("?") || binarySearchWords(s) != null)
-            return s;
+            return new ResultPair(s, true);
 
         if (s.length() < 1)
-            return null;
+            return new ResultPair("", true);
 
-        int[] indexes = new int[50];
-        int count = 0;
-        for (int i = 2; i < longestWord && i < s.length() ; i++) {
-            String result = binarySearchWords(s.substring(0, i));
-            if (result != null) {
-                indexes[count++] = i;
+        String result = "";
+        for (int i = s.length() > longestWord ? longestWord : s.length(); i > 0 ; i--) {
+            result = s.substring(0, i);
+            if (binarySearchWords(result) != null) {
+                ResultPair rest = recursiveRefactorString(s.substring(i, s.length()));
+                if (rest.correct) {                	
+                	return new ResultPair(result + " " + rest.str, true);
+                }
             }
         }
 
-        for (int i = 0 ; i < count ; i++) {
-            System.out.println(s.substring(0, indexes[i]) +  " : " + s.substring(indexes[i], s.length()));
-             String tmp = recursiveRefactorString(s.substring(indexes[i], s.length()));
-             if (tmp != null) {
-                return s.substring(0, indexes[i]) + " " + tmp;
-             }
-        }
-
-        return s;
-    }*/
+        return new ResultPair(s + " " + result, false);
+    }
 
     /**
      * Translates the turkish string without spaces into a string with spaces.

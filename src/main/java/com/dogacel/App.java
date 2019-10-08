@@ -17,7 +17,7 @@ public class App {
     public static void loadWords() throws Exception {
         words = new String[20000001];
         wordCount = 0;
-        FileReader inFile = new FileReader("wordlist.txt");
+        FileReader inFile = new FileReader("src/main/java/com/dogacel/wordlist.txt");
 
         BufferedReader br = new BufferedReader(inFile);
 
@@ -71,13 +71,12 @@ public class App {
         do {
             System.out.print("Input: ");
             inStr = scan.nextLine();
-            System.out.println("Output: " + hardRefactorString(inStr));
+            System.out.println("Greedy Output: " + hardRefactorString(inStr));
+            System.out.println("Recusrive Output: " + recursiveRefactorString(inStr));
         } while (inStr.length() > 1);
 
     }
 
-    //TODO: Recursive approach for all words properly seperated by spaces.
-    /**
     public static String recursiveRefactorString(String s) {
 
         if (s == null)
@@ -107,7 +106,7 @@ public class App {
         }
 
         return s;
-    }*/
+    }
 
     /**
      * Translates the turkish string without spaces into a string with spaces.
